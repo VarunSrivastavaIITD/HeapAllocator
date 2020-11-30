@@ -21,10 +21,10 @@ export warnflags = -Wfloat-equal -Wtype-limits -Wpointer-arith -Wlogical-op -Wsh
 LDFLAGS =
 LDLIBS =
 
-$(PROGRAMS): test_%:%.o segment.c test_harness.c
+$(PROGRAMS): test_%:%.o segment.c test_harness.c utils.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(MY_PROGRAMS): my_optional_program_%:my_optional_program.c %.o segment.c
+$(MY_PROGRAMS): my_optional_program_%:my_optional_program.c %.o segment.c utils.c
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 clean::
