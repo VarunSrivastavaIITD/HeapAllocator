@@ -11,6 +11,7 @@
 
 #include "allocator.h"
 #include "debug_break.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,21 +20,14 @@ static void *segment_start;
 static size_t segment_size;
 static size_t nused;
 
-/* Function: roundup
- * -----------------
- * This function rounds up the given number to the given multiple, which
- * must be a power of 2, and returns the result.  (you saw this code in lab1!).
- */
-size_t roundup(size_t sz, size_t mult) { return (sz + mult - 1) & ~(mult - 1); }
-
 /* Function: myinit
  * ----------------
  * This function initializes our global variables based on the specified
  * segment boundary parameters.
  */
-bool myinit(void *start, size_t size) {
-  segment_start = start;
-  segment_size = size;
+bool myinit(void *heap_start, size_t heap_size) {
+  segment_start = heap_start;
+  segment_size = heap_size;
   nused = 0;
   return true;
 }
